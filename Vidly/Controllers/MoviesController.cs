@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,6 +21,45 @@ namespace Vidly.Controllers
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
+        }
+        public ActionResult New()
+        {
+            var genres = _context.Genres.ToList();
+            var viewModel = new MovieFormViewModel
+            {
+                Genres = genres
+            };
+
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+            {
+                try
+                {
+                    movie.NumberInStock = 1;
+                    movie.NumberAvailable = 1;
+                    _context.Movies.Add(movie);
+                }
+                catch (DbEntityValidationException e)
+                {
+                    throw;
+                }
+            }
+            else
+            {
+                var moviesInDb = _context.Movies.Single(c => c.Id == movie.Id);
+
+                moviesInDb.Name = movie.Name;
+                moviesInDb.ReleaseDate = movie.ReleaseDate;
+                moviesInDb.GenreId = movie.GenreId;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
         }
         // GET: Movies
         public ActionResult Random()
