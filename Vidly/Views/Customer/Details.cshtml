@@ -3,8 +3,11 @@
     ViewBag.Title = "Customers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>details</h2>
+<h2>Details</h2>
 <ul>
-    <li>Membership Type: @Model.Name</li>
+    <li>Membership Type: @Model.MembershipType.Name</li>
+    @if (@Model.Birthdate != null)
+    {
     <li>Birthdate: @Model.Birthdate.Value.ToShortDateString()</li>
+    }
 </ul>
