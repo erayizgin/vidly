@@ -8,7 +8,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EDF0D049-147F-4E88-9323-F9B28EF40AE3}</ProjectGuid>
+    <ProjectGuid>{546F5AB1-985C-4906-BD23-89A4C97857C1}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.0\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -55,12 +58,21 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -152,39 +164,63 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812031955333_InitialCreate.cs" />
-    <Compile Include="Migrations\201812031955333_InitialCreate.Designer.cs">
-      <DependentUpon>201812031955333_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201812040803030_InitialCreate.cs" />
+    <Compile Include="Migrations\201812040803030_InitialCreate.Designer.cs">
+      <DependentUpon>201812040803030_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812032009505_AddIsSubscribedToCustomer.cs" />
-    <Compile Include="Migrations\201812032009505_AddIsSubscribedToCustomer.Designer.cs">
-      <DependentUpon>201812032009505_AddIsSubscribedToCustomer.cs</DependentUpon>
+    <Compile Include="Migrations\201812040832351_PopulateMembershipTypes.cs" />
+    <Compile Include="Migrations\201812040832351_PopulateMembershipTypes.Designer.cs">
+      <DependentUpon>201812040832351_PopulateMembershipTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812032020348_membershiptype.cs" />
-    <Compile Include="Migrations\201812032020348_membershiptype.Designer.cs">
-      <DependentUpon>201812032020348_membershiptype.cs</DependentUpon>
+    <Compile Include="Migrations\201812040916076_customerNameLength.cs" />
+    <Compile Include="Migrations\201812040916076_customerNameLength.Designer.cs">
+      <DependentUpon>201812040916076_customerNameLength.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812041830016_DiffDatabase.cs" />
-    <Compile Include="Migrations\201812041830016_DiffDatabase.Designer.cs">
-      <DependentUpon>201812041830016_DiffDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201812041337308_membershiptypeName.cs" />
+    <Compile Include="Migrations\201812041337308_membershiptypeName.Designer.cs">
+      <DependentUpon>201812041337308_membershiptypeName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812041833529_membership.cs" />
-    <Compile Include="Migrations\201812041833529_membership.Designer.cs">
-      <DependentUpon>201812041833529_membership.cs</DependentUpon>
+    <Compile Include="Migrations\201812041339060_MemberNameSQL.cs" />
+    <Compile Include="Migrations\201812041339060_MemberNameSQL.Designer.cs">
+      <DependentUpon>201812041339060_MemberNameSQL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812041351082_UpdateMembers.cs" />
+    <Compile Include="Migrations\201812041351082_UpdateMembers.Designer.cs">
+      <DependentUpon>201812041351082_UpdateMembers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812041404235_customerbirth.cs" />
+    <Compile Include="Migrations\201812041404235_customerbirth.Designer.cs">
+      <DependentUpon>201812041404235_customerbirth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812050833487_Genre.cs" />
+    <Compile Include="Migrations\201812050833487_Genre.Designer.cs">
+      <DependentUpon>201812050833487_Genre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812060603419_SyncHB.cs" />
+    <Compile Include="Migrations\201812060603419_SyncHB.Designer.cs">
+      <DependentUpon>201812060603419_SyncHB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CustomerFormViewModel.cs" />
+    <Compile Include="ViewModels\MovieFormViewModel.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -229,8 +265,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Movies\Random.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
-    <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
+    <Content Include="Views\Customer\CustomerForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -249,20 +288,32 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812031955333_InitialCreate.resx">
-      <DependentUpon>201812031955333_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812040803030_InitialCreate.resx">
+      <DependentUpon>201812040803030_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812032009505_AddIsSubscribedToCustomer.resx">
-      <DependentUpon>201812032009505_AddIsSubscribedToCustomer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812040832351_PopulateMembershipTypes.resx">
+      <DependentUpon>201812040832351_PopulateMembershipTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812032020348_membershiptype.resx">
-      <DependentUpon>201812032020348_membershiptype.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812040916076_customerNameLength.resx">
+      <DependentUpon>201812040916076_customerNameLength.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812041830016_DiffDatabase.resx">
-      <DependentUpon>201812041830016_DiffDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812041337308_membershiptypeName.resx">
+      <DependentUpon>201812041337308_membershiptypeName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812041833529_membership.resx">
-      <DependentUpon>201812041833529_membership.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812041339060_MemberNameSQL.resx">
+      <DependentUpon>201812041339060_MemberNameSQL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812041351082_UpdateMembers.resx">
+      <DependentUpon>201812041351082_UpdateMembers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812041404235_customerbirth.resx">
+      <DependentUpon>201812041404235_customerbirth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812050833487_Genre.resx">
+      <DependentUpon>201812050833487_Genre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812060603419_SyncHB.resx">
+      <DependentUpon>201812060603419_SyncHB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -281,9 +332,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>39495</DevelopmentServerPort>
+          <DevelopmentServerPort>62588</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:39495/</IISUrl>
+          <IISUrl>http://localhost:62588/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
