@@ -54,13 +54,47 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Glimpse.Ado, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.AspNet, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Core, Version=1.8.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.EF6, Version=1.6.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.EF6.1.6.5\lib\net45\Glimpse.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Mvc5, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -168,48 +202,59 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
+    <Compile Include="Controllers\Api\MoviesController.cs" />
+    <Compile Include="Controllers\Api\NewRentalsController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
+    <Compile Include="Dtos\GenreDto.cs" />
+    <Compile Include="Dtos\MembershipTypeDto.cs" />
+    <Compile Include="Dtos\MovieDto.cs" />
+    <Compile Include="Dtos\NewRentalDto.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812040803030_InitialCreate.cs" />
-    <Compile Include="Migrations\201812040803030_InitialCreate.Designer.cs">
-      <DependentUpon>201812040803030_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201812031955333_InitialCreate.cs" />
+    <Compile Include="Migrations\201812031955333_InitialCreate.Designer.cs">
+      <DependentUpon>201812031955333_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812040832351_PopulateMembershipTypes.cs" />
-    <Compile Include="Migrations\201812040832351_PopulateMembershipTypes.Designer.cs">
-      <DependentUpon>201812040832351_PopulateMembershipTypes.cs</DependentUpon>
+    <Compile Include="Migrations\201812032009505_AddIsSubscribedToCustomer.cs" />
+    <Compile Include="Migrations\201812032009505_AddIsSubscribedToCustomer.Designer.cs">
+      <DependentUpon>201812032009505_AddIsSubscribedToCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812040916076_customerNameLength.cs" />
-    <Compile Include="Migrations\201812040916076_customerNameLength.Designer.cs">
-      <DependentUpon>201812040916076_customerNameLength.cs</DependentUpon>
+    <Compile Include="Migrations\201812032020348_membershiptype.cs" />
+    <Compile Include="Migrations\201812032020348_membershiptype.Designer.cs">
+      <DependentUpon>201812032020348_membershiptype.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812041337308_membershiptypeName.cs" />
-    <Compile Include="Migrations\201812041337308_membershiptypeName.Designer.cs">
-      <DependentUpon>201812041337308_membershiptypeName.cs</DependentUpon>
+    <Compile Include="Migrations\201812041830016_DiffDatabase.cs" />
+    <Compile Include="Migrations\201812041830016_DiffDatabase.Designer.cs">
+      <DependentUpon>201812041830016_DiffDatabase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812041339060_MemberNameSQL.cs" />
-    <Compile Include="Migrations\201812041339060_MemberNameSQL.Designer.cs">
-      <DependentUpon>201812041339060_MemberNameSQL.cs</DependentUpon>
+    <Compile Include="Migrations\201812041833529_membership.cs" />
+    <Compile Include="Migrations\201812041833529_membership.Designer.cs">
+      <DependentUpon>201812041833529_membership.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812041351082_UpdateMembers.cs" />
-    <Compile Include="Migrations\201812041351082_UpdateMembers.Designer.cs">
-      <DependentUpon>201812041351082_UpdateMembers.cs</DependentUpon>
+    <Compile Include="Migrations\201812051851091_test.cs" />
+    <Compile Include="Migrations\201812051851091_test.Designer.cs">
+      <DependentUpon>201812051851091_test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812041404235_customerbirth.cs" />
-    <Compile Include="Migrations\201812041404235_customerbirth.Designer.cs">
-      <DependentUpon>201812041404235_customerbirth.cs</DependentUpon>
+    <Compile Include="Migrations\201812051921153_movieMod.cs" />
+    <Compile Include="Migrations\201812051921153_movieMod.Designer.cs">
+      <DependentUpon>201812051921153_movieMod.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812050833487_Genre.cs" />
-    <Compile Include="Migrations\201812050833487_Genre.Designer.cs">
-      <DependentUpon>201812050833487_Genre.cs</DependentUpon>
+    <Compile Include="Migrations\201812082006065_IdentityModels.cs" />
+    <Compile Include="Migrations\201812082006065_IdentityModels.Designer.cs">
+      <DependentUpon>201812082006065_IdentityModels.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812060603419_SyncHB.cs" />
-    <Compile Include="Migrations\201812060603419_SyncHB.Designer.cs">
-      <DependentUpon>201812060603419_SyncHB.cs</DependentUpon>
+    <Compile Include="Migrations\201812082146124_IdentityModelsRemove.cs" />
+    <Compile Include="Migrations\201812082146124_IdentityModelsRemove.Designer.cs">
+      <DependentUpon>201812082146124_IdentityModelsRemove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812091925444_RentalsDb.cs" />
+    <Compile Include="Migrations\201812091925444_RentalsDb.Designer.cs">
+      <DependentUpon>201812091925444_RentalsDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -218,6 +263,7 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="ViewModels\MovieFormViewModel.cs" />
@@ -448,6 +494,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Rentals\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -463,32 +510,35 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812040803030_InitialCreate.resx">
-      <DependentUpon>201812040803030_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812031955333_InitialCreate.resx">
+      <DependentUpon>201812031955333_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812040832351_PopulateMembershipTypes.resx">
-      <DependentUpon>201812040832351_PopulateMembershipTypes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812032009505_AddIsSubscribedToCustomer.resx">
+      <DependentUpon>201812032009505_AddIsSubscribedToCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812040916076_customerNameLength.resx">
-      <DependentUpon>201812040916076_customerNameLength.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812032020348_membershiptype.resx">
+      <DependentUpon>201812032020348_membershiptype.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812041337308_membershiptypeName.resx">
-      <DependentUpon>201812041337308_membershiptypeName.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812041830016_DiffDatabase.resx">
+      <DependentUpon>201812041830016_DiffDatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812041339060_MemberNameSQL.resx">
-      <DependentUpon>201812041339060_MemberNameSQL.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812041833529_membership.resx">
+      <DependentUpon>201812041833529_membership.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812041351082_UpdateMembers.resx">
-      <DependentUpon>201812041351082_UpdateMembers.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812051851091_test.resx">
+      <DependentUpon>201812051851091_test.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812041404235_customerbirth.resx">
-      <DependentUpon>201812041404235_customerbirth.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812051921153_movieMod.resx">
+      <DependentUpon>201812051921153_movieMod.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812050833487_Genre.resx">
-      <DependentUpon>201812050833487_Genre.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812082006065_IdentityModels.resx">
+      <DependentUpon>201812082006065_IdentityModels.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812060603419_SyncHB.resx">
-      <DependentUpon>201812060603419_SyncHB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812082146124_IdentityModelsRemove.resx">
+      <DependentUpon>201812082146124_IdentityModelsRemove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812091925444_RentalsDb.resx">
+      <DependentUpon>201812091925444_RentalsDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
