@@ -73,21 +73,6 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
-    </Reference>
-    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
-      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -202,11 +187,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
     <Compile Include="Controllers\Api\NewRentalsController.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\RentalsController.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
@@ -216,45 +202,49 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812031955333_InitialCreate.cs" />
-    <Compile Include="Migrations\201812031955333_InitialCreate.Designer.cs">
-      <DependentUpon>201812031955333_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201812040803030_InitialCreate.cs" />
+    <Compile Include="Migrations\201812040803030_InitialCreate.Designer.cs">
+      <DependentUpon>201812040803030_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812032009505_AddIsSubscribedToCustomer.cs" />
-    <Compile Include="Migrations\201812032009505_AddIsSubscribedToCustomer.Designer.cs">
-      <DependentUpon>201812032009505_AddIsSubscribedToCustomer.cs</DependentUpon>
+    <Compile Include="Migrations\201812040832351_PopulateMembershipTypes.cs" />
+    <Compile Include="Migrations\201812040832351_PopulateMembershipTypes.Designer.cs">
+      <DependentUpon>201812040832351_PopulateMembershipTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812032020348_membershiptype.cs" />
-    <Compile Include="Migrations\201812032020348_membershiptype.Designer.cs">
-      <DependentUpon>201812032020348_membershiptype.cs</DependentUpon>
+    <Compile Include="Migrations\201812040916076_customerNameLength.cs" />
+    <Compile Include="Migrations\201812040916076_customerNameLength.Designer.cs">
+      <DependentUpon>201812040916076_customerNameLength.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812041830016_DiffDatabase.cs" />
-    <Compile Include="Migrations\201812041830016_DiffDatabase.Designer.cs">
-      <DependentUpon>201812041830016_DiffDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201812041337308_membershiptypeName.cs" />
+    <Compile Include="Migrations\201812041337308_membershiptypeName.Designer.cs">
+      <DependentUpon>201812041337308_membershiptypeName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812041833529_membership.cs" />
-    <Compile Include="Migrations\201812041833529_membership.Designer.cs">
-      <DependentUpon>201812041833529_membership.cs</DependentUpon>
+    <Compile Include="Migrations\201812041339060_MemberNameSQL.cs" />
+    <Compile Include="Migrations\201812041339060_MemberNameSQL.Designer.cs">
+      <DependentUpon>201812041339060_MemberNameSQL.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812051851091_test.cs" />
-    <Compile Include="Migrations\201812051851091_test.Designer.cs">
-      <DependentUpon>201812051851091_test.cs</DependentUpon>
+    <Compile Include="Migrations\201812041351082_UpdateMembers.cs" />
+    <Compile Include="Migrations\201812041351082_UpdateMembers.Designer.cs">
+      <DependentUpon>201812041351082_UpdateMembers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812051921153_movieMod.cs" />
-    <Compile Include="Migrations\201812051921153_movieMod.Designer.cs">
-      <DependentUpon>201812051921153_movieMod.cs</DependentUpon>
+    <Compile Include="Migrations\201812041404235_customerbirth.cs" />
+    <Compile Include="Migrations\201812041404235_customerbirth.Designer.cs">
+      <DependentUpon>201812041404235_customerbirth.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812082006065_IdentityModels.cs" />
-    <Compile Include="Migrations\201812082006065_IdentityModels.Designer.cs">
-      <DependentUpon>201812082006065_IdentityModels.cs</DependentUpon>
+    <Compile Include="Migrations\201812050833487_Genre.cs" />
+    <Compile Include="Migrations\201812050833487_Genre.Designer.cs">
+      <DependentUpon>201812050833487_Genre.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812082146124_IdentityModelsRemove.cs" />
-    <Compile Include="Migrations\201812082146124_IdentityModelsRemove.Designer.cs">
-      <DependentUpon>201812082146124_IdentityModelsRemove.cs</DependentUpon>
+    <Compile Include="Migrations\201812060603419_SyncHB.cs" />
+    <Compile Include="Migrations\201812060603419_SyncHB.Designer.cs">
+      <DependentUpon>201812060603419_SyncHB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812091925444_RentalsDb.cs" />
-    <Compile Include="Migrations\201812091925444_RentalsDb.Designer.cs">
-      <DependentUpon>201812091925444_RentalsDb.cs</DependentUpon>
+    <Compile Include="Migrations\201812100744452_syncHBTest.cs" />
+    <Compile Include="Migrations\201812100744452_syncHBTest.Designer.cs">
+      <DependentUpon>201812100744452_syncHBTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812101200552_ModelSync.cs" />
+    <Compile Include="Migrations\201812101200552_ModelSync.Designer.cs">
+      <DependentUpon>201812101200552_ModelSync.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -382,10 +372,15 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -395,6 +390,8 @@
     </Content>
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -470,6 +467,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -491,10 +494,10 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Customer\CustomerForm.cshtml" />
+    <Content Include="Views\Rentals\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Rentals\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -510,35 +513,38 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812031955333_InitialCreate.resx">
-      <DependentUpon>201812031955333_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812040803030_InitialCreate.resx">
+      <DependentUpon>201812040803030_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812032009505_AddIsSubscribedToCustomer.resx">
-      <DependentUpon>201812032009505_AddIsSubscribedToCustomer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812040832351_PopulateMembershipTypes.resx">
+      <DependentUpon>201812040832351_PopulateMembershipTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812032020348_membershiptype.resx">
-      <DependentUpon>201812032020348_membershiptype.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812040916076_customerNameLength.resx">
+      <DependentUpon>201812040916076_customerNameLength.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812041830016_DiffDatabase.resx">
-      <DependentUpon>201812041830016_DiffDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812041337308_membershiptypeName.resx">
+      <DependentUpon>201812041337308_membershiptypeName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812041833529_membership.resx">
-      <DependentUpon>201812041833529_membership.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812041339060_MemberNameSQL.resx">
+      <DependentUpon>201812041339060_MemberNameSQL.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812051851091_test.resx">
-      <DependentUpon>201812051851091_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812041351082_UpdateMembers.resx">
+      <DependentUpon>201812041351082_UpdateMembers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812051921153_movieMod.resx">
-      <DependentUpon>201812051921153_movieMod.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812041404235_customerbirth.resx">
+      <DependentUpon>201812041404235_customerbirth.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812082006065_IdentityModels.resx">
-      <DependentUpon>201812082006065_IdentityModels.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812050833487_Genre.resx">
+      <DependentUpon>201812050833487_Genre.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812082146124_IdentityModelsRemove.resx">
-      <DependentUpon>201812082146124_IdentityModelsRemove.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812060603419_SyncHB.resx">
+      <DependentUpon>201812060603419_SyncHB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812091925444_RentalsDb.resx">
-      <DependentUpon>201812091925444_RentalsDb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812100744452_syncHBTest.resx">
+      <DependentUpon>201812100744452_syncHBTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101200552_ModelSync.resx">
+      <DependentUpon>201812101200552_ModelSync.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
